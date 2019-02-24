@@ -2,10 +2,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ProductsState, getAllPizzas } from '../../store';
+import { ProductsState, getAllPizzas, LoadPizzas } from '../../store';
 
 import { Pizza } from '../../models/pizza.model';
-import { PizzasService } from '../../services/pizzas.service';
 
 @Component({
     selector: 'products',
@@ -37,5 +36,6 @@ export class ProductsComponent implements OnInit {
 
     public ngOnInit() {
         this.pizzas$ = this.store.pipe(select(getAllPizzas));
+        this.store.dispatch(new LoadPizzas());
     }
 }
