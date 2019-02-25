@@ -5,7 +5,6 @@ import {
     LOAD_PIZZAS_FAIL,
     LOAD_PIZZAS_SUCCESS,
 } from '../actions/pizzas.action';
-import { access } from 'fs';
 
 export interface PizzaState {
     entities: PizzaEntities;
@@ -32,8 +31,8 @@ export function reducer(
             return { ...state, loading: true };
         }
         case LOAD_PIZZAS_SUCCESS: {
-            const data = action.payload;
-            const entities = data.reduce(
+            const pizzas = action.payload;
+            const entities = pizzas.reduce(
                 (result: PizzaEntities, pizza: Pizza) => ({
                     ...result,
                     [pizza.id]: pizza,

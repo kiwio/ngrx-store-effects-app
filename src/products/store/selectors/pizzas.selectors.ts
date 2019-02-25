@@ -3,9 +3,8 @@ import { createSelector } from '@ngrx/store';
 import * as fromRoot from '../../../app/store';
 import * as fromProducts from '../reducers';
 import * as fromPizzas from '../reducers/pizzas.reducer';
+import * as fromToppings from '../selectors/toppings.selectors';
 import { Pizza } from '../../models/pizza.model';
-import { RouterStateUrl } from '../../../app/store';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 // pizzas state
 export const getPizzaState = createSelector(
@@ -28,6 +27,16 @@ export const getSelectedPizza = createSelector(
     fromRoot.getRouterState,
     (entities: fromPizzas.PizzaEntities, router): Pizza =>
         router.state && entities[router.state.params.pizzaId]
+);
+
+export const getPizzaVisualised = createSelector(
+    getSelectedPizza,
+    fromToppings.getToppingEntities,
+    fromToppings.getSelectedToppings,
+    (pizza, toppingEntities, selectedToppings) => {
+        const toppings = selectedToppings.map(id => toppingEntities[id]);
+        return { ...pizza, toppings };
+    }
 );
 
 export const getPizzasLoaded = createSelector(
