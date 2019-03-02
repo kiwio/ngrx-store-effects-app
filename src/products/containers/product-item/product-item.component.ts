@@ -11,6 +11,9 @@ import {
     getAllToppings,
     VisualiseToppings,
     getPizzaVisualised,
+    CreatePizza,
+    UpdatePizza,
+    RemovePizza,
 } from '../../store';
 
 @Component({
@@ -57,9 +60,18 @@ export class ProductItemComponent implements OnInit {
         this.store.dispatch(new VisualiseToppings(event));
     }
 
-    public onCreate(event: Pizza) {}
+    public onCreate(event: Pizza) {
+        this.store.dispatch(new CreatePizza(event));
+    }
 
-    public onUpdate(event: Pizza) {}
+    public onUpdate(event: Pizza) {
+        this.store.dispatch(new UpdatePizza(event));
+    }
 
-    public onRemove(event: Pizza) {}
+    public onRemove(event: Pizza) {
+        const remove = window.confirm('Are you sure?');
+        if (remove) {
+            this.store.dispatch(new RemovePizza(event));
+        }
+    }
 }
