@@ -5,7 +5,6 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 
-import * as fromStore from '../store';
 import { ProductsState, getPizzasLoaded, LoadPizzas } from '../store';
 import { of } from 'rxjs';
 

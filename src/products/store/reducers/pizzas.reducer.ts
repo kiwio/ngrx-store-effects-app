@@ -19,14 +19,14 @@ export interface PizzaEntities {
     [id: number]: Pizza;
 }
 
-export const initalState: PizzaState = {
+export const initialState: PizzaState = {
     entities: {},
     loaded: false,
     loading: false,
 };
 
 export function reducer(
-    state: PizzaState = initalState,
+    state: PizzaState = initialState,
     action: PizzasAction
 ): PizzaState {
     switch (action.type) {

@@ -19,7 +19,7 @@ export interface ToppingsEntities {
 }
 
 export const initialState: ToppingsState = {
-    entities: [],
+    entities: {},
     loaded: false,
     loading: false,
     selectedToppings: [],
